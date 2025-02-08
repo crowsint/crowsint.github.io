@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crowsint - Outil OSINT</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif; /* Police classique */
+            background-color: #000000; /* Fond noir */
+            color: #E6E6FA; /* Texte mauve clair */
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1A1A1A; /* Fond gris très foncé */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(147, 112, 219, 0.5); /* Ombre mauve */
+        }
+
+        /* ASCII Art Title */
+        .ascii-title {
+            font-family: monospace; /* Police à chasse fixe pour l'ASCII art */
+            white-space: pre; /* Conserve les espaces et sauts de ligne */
+            color: #9370DB; /* Mauve moyen */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 12px; /* Taille ajustée pour l'ASCII art */
+        }
+
+        /* Ligne sous le titre */
+        .title-line {
+            width: 100%;
+            height: 2px;
+            background-color: #9370DB; /* Mauve moyen */
+            margin-bottom: 30px;
+        }
+
+        /* Titres */
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #9370DB; /* Mauve moyen */
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #9370DB; /* Mauve moyen */
+        }
+
+        /* Paragraphes */
+        p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Bouton */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4B0082; /* Mauve foncé */
+            color: #E6E6FA; /* Texte mauve clair */
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #9370DB; /* Mauve moyen au survol */
+            transform: scale(1.05); /* Effet de zoom */
+        }
+
+        /* Indicateur de Statut Opérationnel */
+        .status-indicator {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .status-indicator .status {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #440274e8; /* Mauve foncé */
+            color: #E6E6FA; /* Texte mauve clair */
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .status-indicator .status.operational {
+            background-color: #00FF7F; /* Vert pour opérationnel */
+            color: #000000; /* Texte noir */
+        }
+
+        .status-indicator .status:hover {
+            transform: scale(1.05); /* Effet de zoom */
+        }
+
+        /* Section Performances */
+        .performance-section {
+            margin-top: 30px;
+        }
+
+        .performance-section .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .performance-section .stats div {
+            background-color: #9370DB; /* Mauve foncé */
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            flex: 1;
+            margin: 0 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .performance-section .stats div:hover {
+            background-color: #9370DB; /* Mauve moyen au survol */
+            transform: scale(1.05); /* Effet de zoom */
+        }
+
+        .performance-section .stats div h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #E6E6FA; /* Texte mauve clair */
+        }
+
+        .performance-section .stats div p {
+            margin: 0;
+            font-size: 1rem;
+            color: #E6E6FA; /* Texte mauve clair */
+        }
+
+        /* Section Fonctionnalités */
+        .features-section {
+            margin-top: 30px;
+        }
+
+        .features-section .module {
+            background-color: #9370DB; /* Mauve foncé */
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .features-section .module:hover {
+            background-color: #9370DB; /* Mauve moyen au survol */
+            transform: scale(1.02); /* Effet de zoom */
+        }
+
+        .features-section .module h3 {
+            margin-top: 0;
+            color: #E6E6FA; /* Texte mauve clair */
+        }
+
+        .features-section .module p {
+            margin-bottom: 10px;
+            color: #E6E6FA; /* Texte mauve clair */
+        }
+
+        .features-section .module ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .features-section .module ul li {
+            margin-bottom: 10px;
+            color: #E6E6FA; /* Texte mauve clair */
+        }
+
+        /* Section Équipe */
+        .team-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid hwb(260 44% 14%); /* Bordure mauve */
+            text-align: center;
+        }
+
+        .team-section .team-member {
+            display: inline-block;
+            margin: 0 20px;
+            text-align: center;
+        }
+
+        .team-section .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #9370DB; /* Bordure mauve */
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .team-section .team-member img:hover {
+            transform: scale(1.1); /* Effet de zoom */
+        }
+
+        .team-section .team-member h3 {
+            margin-top: 10px;
+            font-size: 1.25rem;
+        }
+
+        /* Pied de page */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #9370DB; /* Mauve moyen */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Titre en ASCII Art -->
+        <div class="ascii-title">
+                   
+  ▄▄█▀▀▀█▄█                                          ██              ██   
+▄██▀     ▀█                                                          ██   
+██▀       ▀███▄███  ▄██▀██▄▀██▀    ▄█    ▀██▀▄██▀██████ ▀████████▄ ██████ 
+██          ██▀ ▀▀ ██▀   ▀██ ██   ▄███   ▄█  ██   ▀▀ ██   ██    ██   ██   
+██▄         ██     ██     ██  ██ ▄█  ██ ▄█   ▀█████▄ ██   ██    ██   ██   
+▀██▄     ▄▀ ██     ██▄   ▄██   ███    ███    █▄   ██ ██   ██    ██   ██   
+  ▀▀█████▀▄████▄    ▀█████▀     █      █     ██████▀████▄████  ████▄ ▀████
+                                                                          
+                                                                          
+        </div>
+        <!-- Ligne sous le titre -->
+        <div class="title-line"></div>
+
+        <!-- Indicateur de Statut Opérationnel -->
+        <div class="status-indicator">
+            <div class="status operational">● Tous les systèmes sont opérationnels</div>
+        </div>
+
+        <!-- Section Description -->
+        <h2>Qu'est-ce que Crowsint ?</h2>
+        <p>
+            Crowsint est un outil puissant dédié à la recherche OSINT (Open Source Intelligence). Il permet de collecter, analyser et organiser des informations provenant de sources ouvertes pour des investigations approfondies.
+        </p>
+        <p>
+            Que vous soyez un professionnel de la cybersécurité, un enquêteur ou un particulier, Crowsint vous offre des fonctionnalités avancées pour explorer des bases de données, analyser des comptes en ligne et suivre des traces numériques.
+        </p>
+
+        <!-- Section Performances -->
+        <div class="performance-section">
+            <h2>Performances</h2>
+            <div class="stats">
+                <div>
+                    <h3>142 615</h3>
+                    <p>Fichiers dans l'API</p>
+                </div>
+                <div>
+                    <h3>1482,78 Go</h3>
+                    <p>Données stockées</p>
+                </div>
+                <div>
+                    <h3>0.350s</h3>
+                    <p>Temps de réponse moyen</p>
+                </div>
+            </div>
+            <p>
+                Des capacités de recherche ultra-rapides avec un traitement des données en temps réel, entre 0,2 et 0,05 secondes (selon les résultats).
+            </p>
+        </div>
+
+        <!-- Section Fonctionnalités -->
+        <div class="features-section">
+            <h2>Fonctionnalités</h2>
+
+            <!-- Module 1 : Suite d'Intelligence Avancée -->
+            <div class="module">
+                <h3>Suite d'Intelligence Avancée</h3>
+                <p>
+                    Un système complet de suivi et d'analyse numérique pour des investigations approfondies.
+                </p>
+                <ul>
+                    <li>Résolution d'IP à partir d'un ID Discord.</li>
+                    <li>Système de suivi d'IP avancé.</li>
+                    <li>Traitement des données en temps réel.</li>
+                    <li>Correlation multiplateforme.</li>
+                </ul>
+            </div>
+
+            <!-- Module 2 : Accès aux Bases de Données Premium -->
+            <div class="module">
+                <h3>Accès aux Bases de Données Premium</h3>
+                <p>
+                    Accès exclusif à plusieurs bases de données d'intelligence pour des résultats précis.
+                </p>
+                <ul>
+                    <li>Intégration avec LeaKCheck.</li>
+                    <li>Accès à SnusBase.</li>
+                    <li>Plateforme IntelX.</li>
+                    <li>Analyse des logs de Stealer.</li>
+                </ul>
+            </div>
+
+            <!-- Module 3 : Couverture des États-Unis -->
+            <div class="module">
+                <h3>Couverture de France</h3>
+                <p>
+                    Collecte complète de données pour les enquêtes aux France.
+                </p>
+                <ul>
+                    <li>Registres de propriété et de tribunaux.</li>
+                    <li>Registres publics Francais.</li>
+                    <li>Validation de numéros de téléphone francais.</li>
+                    <li>Recherche d'identité aux Francais.</li>
+                </ul>
+            </div>
+
+            <!-- Module 4 : Modules Spécialisés -->
+            <div class="module">
+                <h3>Modules Spécialisés</h3>
+                <p>
+                    Des outils conçus pour des besoins spécifiques en matière d'intelligence.
+                </p>
+                <ul>
+                    <li>Intelligence réseau.</li>
+                    <li>Données véhicules (VIN/VRN).</li>
+                    <li>Suite de récupération de comptes.</li>
+                    <li>Intelligence utilisateur GitHub.</li>
+                </ul>
+            </div>
+
+            <!-- Module 5 : Intelligence des Contacts -->
+            <div class="module">
+                <h3>Intelligence des Contacts</h3>
+                <p>
+                    Des outils avancés pour l'analyse des informations de contact.
+                </p>
+                <ul>
+                    <li>Système de validation d'e-mails.</li>
+                    <li>Intelligence sur les numéros de téléphone.</li>
+                    <li>Capacités de traitement par lots.</li>
+                    <li>Vérification des données en temps réel.</li>
+                </ul>
+            </div>
+
+            <!-- Module 6 : Intelligence des Identités -->
+            <div class="module">
+                <h3>Intelligence des Identités</h3>
+                <p>
+                    Une suite complète pour l'analyse des identités numériques.
+                </p>
+                <ul>
+                    <li>Rapports d'identité complets.</li>
+                    <li>Registres publics nationaux.</li>
+                    <li>Analyse de l'empreinte numérique.</li>
+                    <li>Vérification multiplateforme.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section Équipe -->
+        <div class="team-section">
+            <h2>Notre Équipe</h2>
+            <div class="team-member">
+                <img src="https://i.imgur.com/cBcJR8D.png" alt="Zt">
+                <h3>Zt (UI Manager)</h3>
+            </div>
+            <div class="team-member">
+                <img src="https://i.imgur.com/5NOmwOi.png" alt="Spaz">
+                <h3>Spaz (Developer)</h3>
+            </div>
+            <div class="team-member">
+                <img src="https://i.imgur.com/n8ODdJZ.png" alt="Shell">
+                <h3>Shell (Director)</h3>
+            </div>
+        </div>
+
+        <!-- Bouton vers la Page de Tarifs -->
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="pricing.html" class="btn">Voir nos Tarifs</a>
+        </div>
+    </div>
+
+    <!-- Pied de Page -->
+    <footer>
+        &copy; 2025 Crowsint. Tous droits réservés.
+    </footer>
+</body>
+</html>
