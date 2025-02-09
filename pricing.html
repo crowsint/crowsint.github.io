@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crowsint - Tarifs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* General Reset */
         * {
@@ -14,29 +15,37 @@
 
         /* Body Styling */
         body {
-            font-family: Arial, sans-serif; /* Police classique */
+            font-family: 'Poppins', sans-serif;
             background-color: #000000; /* Fond noir */
             color: #E6E6FA; /* Texte mauve clair */
             line-height: 1.6;
             padding: 20px;
         }
 
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
         /* Titres */
         h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             color: #9370DB; /* Mauve moyen */
+            text-align: center;
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-top: 30px;
             margin-bottom: 15px;
             color: #9370DB; /* Mauve moyen */
         }
 
         h3 {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             margin-top: 20px;
             margin-bottom: 10px;
             color: #9370DB; /* Mauve moyen */
@@ -47,6 +56,9 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            background: rgba(26, 26, 26, 0.8); /* Fond semi-transparent */
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         table, th, td {
@@ -54,18 +66,51 @@
         }
 
         th, td {
-            padding: 10px;
+            padding: 15px;
             text-align: left;
         }
 
         th {
             background-color: #9370DB; /* Fond mauve foncé pour l'en-tête */
             color: #E6E6FA; /* Texte mauve clair */
+            font-weight: 600;
         }
 
         td {
-            background-color: #1A1A1A; /* Fond gris très foncé pour les cellules */
+            background-color: rgba(26, 26, 26, 0.8); /* Fond gris très foncé pour les cellules */
             color: #E6E6FA; /* Texte mauve clair */
+        }
+
+        /* Hover Effects */
+        tr:hover td {
+            background-color: rgba(147, 112, 219, 0.1); /* Effet de survol */
+        }
+
+        /* Call-to-Action Button */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #4B0082, #9370DB);
+            color: #E6E6FA;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(147, 112, 219, 0.7);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            margin-top: 30px;
+        }
+
+        .pricing-section h2 {
+            text-align: center;
         }
 
         /* API Note */
@@ -73,74 +118,124 @@
             font-style: italic;
             margin-top: 10px;
             color: #9370DB; /* Texte mauve moyen */
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #9370DB;
+        }
+
+        footer a {
+            color: #9370DB;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #E6E6FA;
         }
     </style>
 </head>
 <body>
-    <h1>Retour à l’accueil</h1>
+    <div class="container">
+        <!-- Titre Principal -->
+        <h1>Retour à l’accueil</h1>
 
-    <h2>Nos Tarifs</h2>
+        <!-- Section Tarifs -->
+        <div class="pricing-section">
+            <h2>Nos Tarifs</h2>
 
-    <h3>Basique Crowsint - 35$ (remise avant lancement)</h3>
-    <table>
-        <tr>
-            <th>Service</th>
-            <th>Détails</th>
-        </tr>
-        <tr>
-            <td>Recherche de bases de données</td>
-            <td>IntelX, Stealer Logs, Snusbase</td>
-        </tr>
-        <tr>
-            <td>Recherche de personnes</td>
-            <td>Pageblanche,Identity Report, Phone Search</td>
-        </tr>
-        <tr>
-            <td>Analyse de comptes</td>
-            <td>Gitsint, Discord ID Search, Skype Search, Xbox Lookup, PSN Lookup</td>
-        </tr>
-        <tr>
-            <td>OSINT Recon</td>
-            <td>Email Search, Phone Search, User Search, Image Search</td>
-        </tr>
-        <tr>
-            <td>Analyse de réseaux</td>
-            <td>IP Lookup, Port Scanner, Subdomain Scanner</td>
-        </tr>
-        <td>Advanced Recon</td>
-            <td>Wallet Search, Recherche VIN/VRN, Recherche Passport</td>
-        </tr>
-    </table>
+            <!-- Plan Basique -->
+            <h3>Basique Crowsint - 35$ (remise avant lancement)</h3>
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Détails</th>
+                </tr>
+                <tr>
+                    <td>Recherche de bases de données</td>
+                    <td>IntelX, Stealer Logs, Snusbase</td>
+                </tr>
+                <tr>
+                    <td>Recherche de personnes</td>
+                    <td>Pageblanche, Identity Report, Phone Search</td>
+                </tr>
+                <tr>
+                    <td>Analyse de comptes</td>
+                    <td>Gitsint, Discord ID Search, Skype Search, Xbox Lookup, PSN Lookup</td>
+                </tr>
+                <tr>
+                    <td>OSINT Recon</td>
+                    <td>Email Search, Phone Search, User Search, Image Search</td>
+                </tr>
+                <tr>
+                    <td>Analyse de réseaux</td>
+                    <td>IP Lookup, Port Scanner, Subdomain Scanner</td>
+                </tr>
+                <tr>
+                    <td>Advanced Recon</td>
+                    <td>Wallet Search, Recherche VIN/VRN, Recherche Passport</td>
+                </tr>
+            </table>
+            <div style="text-align: center;">
+                <a href="#" class="btn">Choisir ce Plan</a>
+            </div>
 
-    <h3>Entreprise Crowsint - 120$ (remise avant lancement)</h3>
-    <table>
-        <tr>
-            <th>Service</th>
-            <th>Détails</th>
-        </tr>
-        <tr>
-            <td>Recherche de bases de données</td>
-            <td>IntelX, IntelVault, Identity Portal, Snusbase, DataLeaks, Stealer Logs</td>
-        </tr>
-        <tr>
-            <td>Recherche de personnes</td>
-            <td>Identity Report, Pageblanche, TLOxp, TLOfr, Documents judiciaires</td>
-        </tr>
-        <tr>
-            <td>Analyse de comptes</td>
-            <td>Gitsint, Discord ID Search, Skype Search, Xbox Lookup, PSN Lookup</td>
-        </tr>
-        <tr>
-        <td>OSINT Recon</td>
-            <td>Email Search, Phone Search, User Search, Image Search</td>
-        </tr>
-        <tr>
-            <td>Analyse de réseaux</td>
-            <td>IP Lookup, Port Scanner, Subdomain Scanner, Decryption Hash</td>
-        </tr>
-        <td>Advanced Recon</td>
-        <td>Wallet Search, Recherche VIN/VRN, Recherche Passport,Identification globale de l’appelant</td>
-    </tr>
-    </table>
+            <!-- Plan Entreprise -->
+            <h3>Entreprise Crowsint - 120$ (remise avant lancement)</h3>
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Détails</th>
+                </tr>
+                <tr>
+                    <td>Recherche de bases de données</td>
+                    <td>IntelX, IntelVault, Identity Portal, Snusbase, DataLeaks, Stealer Logs</td>
+                </tr>
+                <tr>
+                    <td>Recherche de personnes</td>
+                    <td>Identity Report, Pageblanche, TLOxp, TLOfr, Documents judiciaires</td>
+                </tr>
+                <tr>
+                    <td>Analyse de comptes</td>
+                    <td>Gitsint, Discord ID Search, Skype Search, Xbox Lookup, PSN Lookup</td>
+                </tr>
+                <tr>
+                    <td>OSINT Recon</td>
+                    <td>Email Search, Phone Search, User Search, Image Search</td>
+                </tr>
+                <tr>
+                    <td>Analyse de réseaux</td>
+                    <td>IP Lookup, Port Scanner, Subdomain Scanner, Decryption Hash</td>
+                </tr>
+                <tr>
+                    <td>Advanced Recon</td>
+                    <td>Wallet Search, Recherche VIN/VRN, Recherche Passport, Identification globale de l’appelant</td>
+                </tr>
+            </table>
+            <div style="text-align: center;">
+                <a href="#" class="btn">Choisir ce Plan</a>
+            </div>
+        </div>
+
+        <!-- Note API -->
+        <p class="api-note">
+            Pour les intégrations API, veuillez nous contacter pour des tarifs personnalisés.
+        </p>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2023 Crowsint. Tous droits réservés.</p>
+            <p>
+                <a href="privacy.html">Politique de Confidentialité</a> | 
+                <a href="terms.html">Conditions d'Utilisation</a> | 
+                <a href="contact.html">Contact</a>
+            </p>
+        </footer>
+    </div>
 </body>
 </html>
