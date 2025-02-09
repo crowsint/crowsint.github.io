@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page de connexion de Crowsint - Outil OSINT puissant pour la recherche et l'analyse de données ouvertes.">
+    <meta name="keywords" content="OSINT, Crowsint, connexion, accès, clé">
+    <meta name="author" content="Crowsint Team">
+    <title>Crowsint - Connexion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000; 
+            color: #E6E6FA; 
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        
+        .container {
+            background: rgba(26, 26, 26, 0.8); 
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(147, 112, 219, 0.5);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+       
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #9370DB; 
+        }
+
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 1rem;
+            color: #E6E6FA;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #9370DB;
+            border-radius: 5px;
+            background: rgba(75, 0, 130, 0.8);
+            color: #E6E6FA;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #4B0082;
+            box-shadow: 0 0 10px rgba(147, 112, 219, 0.7);
+            outline: none;
+        }
+
+        .form-group input::placeholder {
+            color: #9370DB;
+        }
+
+        
+        .btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #4B0082, #9370DB);
+            color: #E6E6FA;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(147, 112, 219, 0.7);
+        }
+
+        
+        .error-message {
+            color: #FF6B6B;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        
+        footer {
+            margin-top: 20px;
+            color: #9370DB;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #9370DB;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #E6E6FA;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <h1>Connexion à Crowsint</h1>
+
+        
+        <form class="login-form" onsubmit="validateKey(event)">
+            <div class="form-group">
+                <label for="access-key">Clé d'Accès (12 chiffres)</label>
+                <input
+                    type="text"
+                    id="access-key"
+                    name="access-key"
+                    placeholder="Entrez votre clé d'accès"
+                    maxlength="12"
+                    required
+                />
+                <div class="error-message" id="error-message">
+                    La clé doit contenir exactement 12 chiffres.
+                </div>
+            </div>
+            <button type="submit" class="btn">Se Connecter</button>
+        </form>
+
+        
+        <footer>
+            <p>Vous n'avez pas de clé ? <a href="pricing.html">Obtenez-en une ici</a>.</p>
+        </footer>
+    </div>
+
+    <script>
+        
+        function validateKey(event) {
+            event.preventDefault(); 
+
+            const keyInput = document.getElementById('access-key');
+            const errorMessage = document.getElementById('error-message');
+
+            
+            const isValid = /^\d{12}$/.test(keyInput.value);
+
+            if (isValid) {
+                
+                window.location.href = 'index.html';
+            } else {
+                
+                errorMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
