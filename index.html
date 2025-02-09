@@ -13,19 +13,19 @@
         Your browser does not support the audio element.
     </audio>
     <style>
-        /* General Reset */
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Smooth Scroll */
+        
         html {
             scroll-behavior: smooth;
         }
 
-        /* Body Styling with Background Image */
+        
         body {
             font-family: 'Poppins', sans-serif;
             background-image: url('https://i.imgur.com/ib8MFjb.png');
@@ -39,7 +39,7 @@
             min-height: 100vh;
         }
 
-        /* Custom Scrollbar */
+        
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -57,7 +57,7 @@
             background: #4B0082;
         }
 
-        /* Container */
+        
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -68,7 +68,7 @@
             box-shadow: 0 0 20px rgba(147, 112, 219, 0.5);
         }
 
-        /* ASCII Art Title */
+        
         .ascii-title {
             font-family: monospace;
             white-space: pre;
@@ -78,7 +78,7 @@
             font-size: 12px;
         }
 
-        /* Title Line */
+        
         .title-line {
             width: 100%;
             height: 2px;
@@ -86,7 +86,7 @@
             margin-bottom: 30px;
         }
 
-        /* Headings */
+        
         h2 {
             font-size: 2rem;
             margin-top: 30px;
@@ -102,13 +102,13 @@
             color: #9370DB;
         }
 
-        /* Paragraphs */
+        
         p {
             font-size: 1rem;
             margin-bottom: 15px;
         }
 
-        /* Button */
+       
         .btn {
             display: inline-block;
             padding: 10px 20px;
@@ -125,7 +125,7 @@
             box-shadow: 0 0 15px rgba(147, 112, 219, 0.7);
         }
 
-        /* Status Indicator */
+        
         .status-indicator {
             text-align: center;
             margin-bottom: 30px;
@@ -189,7 +189,7 @@
             color: #E6E6FA;
         }
 
-        /* Features Section */
+        
         .features-section {
     margin-top: 30px;
 }
@@ -253,7 +253,7 @@
 }
 
 
-        /* Team Section */
+        
         .team-section {
             margin-top: 30px;
             padding-top: 20px;
@@ -303,7 +303,7 @@
             color: #E6E6FA;
         }
 
-        /* Responsive Design */
+        
         @media (max-width: 768px) {
             .performance-section .stats {
                 flex-direction: column;
@@ -328,7 +328,7 @@
             }
         }
 
-        /* Dark Mode Toggle */
+        
         .dark-mode-toggle {
             position: fixed;
             top: 20px;
@@ -351,7 +351,7 @@
             color: #000000;
         }
 
-        /* Loading Animation */
+        
         .loading-animation {
             display: none;
             position: fixed;
@@ -381,17 +381,17 @@
     </style>
 </head>
 <body>
-    <!-- Dark Mode Toggle -->
+    
     <div class="dark-mode-toggle">
         <button onclick="toggleDarkMode()">Mode Sombre</button>
     </div>
 
-    <!-- Loading Animation -->
+    
     <div class="loading-animation" id="loading">
         <div class="spinner"></div>
     </div>
 
-        <!-- YouTube Music Embed -->
+        
         <div class="music-player">
             <iframe
                 width="0"
@@ -403,7 +403,7 @@
             </iframe>
         </div>
 
-    <!-- Main Content -->
+    
     <div class="container">
         <!-- ASCII Art Title -->
         <div class="ascii-title">
@@ -421,7 +421,7 @@
         <!-- Title Line -->
         <div class="title-line"></div>
 
-        <!-- Status Indicator -->
+        
         <div class="status-indicator">
             <div class="status operational">● ꜱʏꜱᴛᴇᴍ ꜱᴏᴜꜱ ᴅᴇᴠᴇʟᴏᴘᴇᴍᴇɴᴛ</div>
         </div>
@@ -452,11 +452,11 @@
             </div>
         </div>
 
-        <!-- Features Section -->
+       
 <div class="features-section">
     <h2>Fonctionnalités Principales</h2>
 
-    <!-- Suite d'Intelligence Avancée -->
+    
     <div class="module">
         <img src="https://i.imgur.com/doICoIu.png" alt="Suite d'Intelligence Avancée">
         <div>
@@ -473,7 +473,7 @@
         </div>
     </div>
 
-    <!-- Modules Spécialisés -->
+    
     <div class="module">
         <img src="https://i.imgur.com/TYboEAL.png" alt="Modules Spécialisés">
         <div>
@@ -490,7 +490,7 @@
         </div>
     </div>
 
-    <!-- Accès aux Bases de Données Premium -->
+    
     <div class="module">
         <img src="https://i.imgur.com/oswFss8.png" alt="Accès aux Bases de Données Premium">
         <div>
@@ -508,7 +508,7 @@
     </div>
 </div>
 
-        <!-- Team Section -->
+       
         <div class="team-section">
             <h2>Notre Équipe</h2>
             <div class="team-member">
@@ -529,13 +529,13 @@
             </div>
         </div>
 
-        <!-- Pricing Button -->
+        
         <div style="text-align: center; margin-top: 30px;">
             <a href="pricing.html" class="btn">Voir nos Tarifs</a>
         </div>
     </div>
 
-    <!-- Footer -->
+    
     <footer>
         <p>&copy; 2023 Crowsint. Tous droits réservés.</p>
         <p>
@@ -546,12 +546,12 @@
     </footer>
 
     <script>
-        // Dark Mode Toggle
+        
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
         }
 
-        // Loading Animation
+       
         window.addEventListener('load', () => {
             const loading = document.getElementById('loading');
             loading.style.display = 'none';
