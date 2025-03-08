@@ -1,573 +1,282 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Crowsint - Outil OSINT puissant pour la recherche et l'analyse de données ouvertes.">
-    <meta name="keywords" content="OSINT, Crowsint, recherche, analyse, cybersécurité">
-    <meta name="author" content="Crowsint Team">
-    <title>Crowsint - Outil OSINT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <audio autoplay loop hidden>
-        <source src="https://crowsint.github.io/song.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <style>
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        
-        html {
-            scroll-behavior: smooth;
-        }
-
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #E6E6FA;
-            line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
-        }
-
-        
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(26, 26, 26, 0.8);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #9370DB;
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4B0082;
-        }
-
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: rgba(26, 26, 26, 0.8);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(147, 112, 219, 0.5);
-        }
-
-        
-        .ascii-title {
-            font-family: monospace;
-            white-space: pre;
-            color: #9370DB;
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 12px;
-        }
-
-        
-        .title-line {
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #9370DB, #4B0082);
-            margin-bottom: 30px;
-        }
-
-        
-        h2 {
-            font-size: 2rem;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            color: #9370DB;
-            text-shadow: 0 0 10px rgba(147, 112, 219, 0.7);
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            color: #9370DB;
-        }
-
-        
-        p {
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-
-       
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #4B0082, #9370DB);
-            color: #E6E6FA;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(147, 112, 219, 0.7);
-        }
-
-        
-        .status-indicator {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .status-indicator .status {
-            display: inline-block;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #4B0082, #9370DB);
-            color: #E6E6FA;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .status-indicator .status.operational {
-            background: linear-gradient(135deg, #00FF7F, #00CC66);
-            color: #000000;
-        }
-
-        .status-indicator .status:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(0, 255, 127, 0.7);
-        }
-
-        /* Performance Section */
-        .performance-section {
-            margin-top: 30px;
-        }
-
-        .performance-section .stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .performance-section .stats div {
-            background: rgb(55, 23, 79);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            flex: 1;
-            margin: 0 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .performance-section .stats div:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(147, 112, 219, 0.7);
-        }
-
-        .performance-section .stats div h3 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: #E6E6FA;
-        }
-
-        .performance-section .stats div p {
-            margin: 0;
-            font-size: 1rem;
-            color: #E6E6FA;
-        }
-
-        
-        .features-section {
-    margin-top: 30px;
-}
-
-.features-section .module {
-    display: flex;
-    align-items: center;
-    background: rgba(40, 15, 58, 0.312);
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-}
-
-.features-section .module:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 20px rgba(91, 60, 154, 0.852);
-    border: 2px solid #9370DB;
-}
-
-.features-section .module img {
-    width: 80px;
-    height: 80px;
-    margin-right: 20px;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-}
-
-.features-section .module img:hover {
-    transform: scale(1.1);
-}
-
-.features-section .module h3 {
-    margin-top: 0;
-    color: #E6E6FA;
-    font-size: 1.75rem;
-}
-
-.features-section .module p {
-    margin-bottom: 10px;
-    color: #E6E6FA;
-    font-size: 1rem;
-}
-
-.features-section .module ul {
-    list-style-type: disc;
-    padding-left: 20px;
-    margin: 0;
-}
-
-.features-section .module ul li {
-    margin-bottom: 10px;
-    color: #E6E6FA;
-    font-size: 0.95rem;
-}
-
-.features-section .module ul li strong {
-    color: #9370DB;
-}
-.login-button {
-    background-color: #9370DB;
-    color: #E6E6FA;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.login-button:hover {
-    background-color: #4B0082;
-}
-
-        
-        .team-section {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #9370DB;
-            text-align: center;
-        }
-
-        .team-section .team-member {
-            display: inline-block;
-            margin: 0 20px;
-            text-align: center;
-        }
-
-        .team-section .team-member img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid #9370DB;
-            margin-bottom: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .team-section .team-member img:hover {
-            transform: scale(1.1);
-        }
-
-        .team-section .team-member h3 {
-            margin-top: 10px;
-            font-size: 1.25rem;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 40px;
-            text-align: center;
-            color: #9370DB;
-        }
-
-        footer a {
-            color: #9370DB;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: #E6E6FA;
-        }
-
-        
-        @media (max-width: 768px) {
-            .performance-section .stats {
-                flex-direction: column;
-            }
-
-            .performance-section .stats div {
-                margin: 10px 0;
-            }
-
-            .features-section .module {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .features-section .module img {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-
-            .team-section .team-member {
-                margin: 20px 0;
-            }
-        }
-
-        
-        .dark-mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .dark-mode-toggle button {
-            background: rgba(26, 26, 26, 0.8);
-            border: 2px solid #9370DB;
-            color: #E6E6FA;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .dark-mode-toggle button:hover {
-            background: #9370DB;
-            color: #000000;
-        }
-
-        
-        .loading-animation {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(26, 26, 26, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .loading-animation .spinner {
-            border: 4px solid #9370DB;
-            border-top: 4px solid transparent;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+    <title>CrowSint - Ultimate OSINT Platform</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    
-    <div class="dark-mode-toggle">
-        <button onclick="toggleDarkMode()">Mode Sombre</button>
-    </div>
-
-    
-    <div class="loading-animation" id="loading">
-        <div class="spinner"></div>
-    </div>
-
-        
-        <div class="music-player">
-            <iframe
-                width="0"
-                height="0"
-                src="https://www.youtube.com/embed/8GW6sLrK40k?autoplay=1&mute=1"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-        </div>
-
-    
     <div class="container">
-        <!-- ASCII Art Title -->
-        <div class="ascii-title">
-                  
-  ▄▄█▀▀▀█▄█                                          ██              ██   
-▄██▀     ▀█                                                          ██   
-██▀       ▀███▄███  ▄██▀██▄▀██▀    ▄█    ▀██▀▄██▀██████ ▀████████▄ ██████ 
-██          ██▀ ▀▀ ██▀   ▀██ ██   ▄███   ▄█  ██   ▀▀ ██   ██    ██   ██   
-██▄         ██     ██     ██  ██ ▄█  ██ ▄█   ▀█████▄ ██   ██    ██   ██   
-▀██▄     ▄▀ ██     ██▄   ▄██   ███    ███    █▄   ██ ██   ██    ██   ██   
-  ▀▀█████▀▄████▄    ▀█████▀     █      █     ██████▀████▄████  ████▄ ▀████
-                                                                          
-                                                                          
-        </div>
-        <!-- Title Line -->
-        <div class="title-line"></div>
         
-        <div class="status-indicator">
-            <div class="status operational">● System Operational</div>
-        </div>
+        <header>
+            <nav>
+                <div class="logo">CrowSint</div>
+                <ul class="nav-links">
+                    <li><a href="#about-us">About Us</a></li> 
+                    <li><a href="tos.html">TOS</a></li> 
+                    <li><a href="#pricing">Pricing</a></li> 
+                    <li><a href="#report-bugs">Report Bugs</a></li> 
+                    <li><a href="signup.html" class="sign-up">Sign Up</a></li> 
+                </ul>
+                <button id="theme-toggle">🌙 Dark Mode</button>
+            </nav>
+        </header>
 
-        <!-- Description Section -->
-        <h2>Qu'est-ce que Crowsint ?</h2>
-        <p>
-            Crowsint is a Advanced and Powerful OSINT tool that searches thru many databases and uses OSINT APIs across the internet. 
-        <p>
-            The tool is perfect for Digital Forensics Investigations and data storing for cases.
-
-        <!-- Performance Section -->
-        <div class="performance-section">
-            <h2>Performances</h2>
-            <div class="stats">
-                <div>
-                    <h3>134 823</h3>
-                    <p>Files in the API</p>
-                </div>
-                <div>
-                    <h3>1362,2 Gb</h3>
-                    <p>Databases</p>
-                </div>
-                <div>
-                    <h3>0.472s</h3>
-                    <p>Minimum time for a request</p>
-                </div>
-            </div>
-        </div>
-     
-<div class="features-section">
-    <h2>Main Fonctions<h2>
-    
-    <div class="module">
-        <img src="https://i.imgur.com/doICoIu.png" alt="Suite d'Intelligence Avancée">
-        <div>
-            <h3>Suite d'Intelligence Avancée</h3>
-            <p>
-                Un système complet de suivi et d'analyse numérique alimenté par une technologie de pointe.
-            </p>
-            <ul>
-                <li><strong>Résolution d'ID en IP :</strong> Résolvez les adresses IP à partir d'identifiants Discord ou autres.</li>
-                <li><strong>Système de suivi d'IP avancé :</strong> Suivez et analysez les adresses IP avec précision.</li>
-                <li><strong>Traitement des données en temps réel :</strong> Traitez les données en temps réel pour des insights instantanés.</li>
-                <li><strong>Corrélation multiplateforme :</strong> Corrélez les données sur plusieurs plateformes pour une vue unifiée.</li>
-            </ul>
-        </div>
-    </div>
-
-    
-    <div class="module">
-        <img src="https://i.imgur.com/TYboEAL.png" alt="Modules Spécialisés">
-        <div>
-            <h3>Modules Spécialisés</h3>
-            <p>
-                Des outils conçus pour des besoins spécifiques en matière de renseignement.
-            </p>
-            <ul>
-                <li><strong>Renseignement sur les réseaux :</strong> Analysez et surveillez l'activité réseau pour des insights exploitables.</li>
-                <li><strong>Données véhicules (VMWRN) :</strong> Accédez à des informations détaillées sur les véhicules et leur suivi.</li>
-                <li><strong>Suite de récupération de comptes :</strong> Outils pour récupérer et sécuriser les comptes compromis.</li>
-                <li><strong>Renseignement sur les utilisateurs GitHub :</strong> Collectez et analysez les données des profils et dépôts GitHub.</li>
-            </ul>
-        </div>
-    </div>
-
-    
-    <div class="module">
-        <img src="https://i.imgur.com/oswFss8.png" alt="Accès aux Bases de Données Premium">
-        <div>
-            <h3>Accès aux Bases de Données Premium</h3>
-            <p>
-                Accédez exclusivement à des bases de données premium pour des résultats précis.
-            </p>
-            <ul>
-                <li><strong>Intégration avec LeakCheck :</strong> Recherchez et analysez les données fuites.</li>
-                <li><strong>Accès à SnusBase :</strong> Accédez à une vaste base de données d'identifiants compromis.</li>
-                <li><strong>Plateforme IntelX :</strong> Utilisez des outils de renseignement avancés pour les enquêtes.</li>
-                <li><strong>Analyse des logs de Stealer :</strong> Analysez les logs des logiciels malveillants volant des informations.</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-       
-        <div class="team-section">
-            <h2>DEVOPS</h2>
-            <div class="team-member">
-                <img src="https://i.imgur.com/jfbif7t.png" alt="Spaz">
-                <h3>Spaz (Developer)</h3>
-            </div>
-            <div class="team-member">
-                <img src="https://i.imgur.com/tLgq93q.png" alt="Zeno">
-                <h3>777 (Manager)</h3>
-            </div>
-            <div class="team-member">
-                <img src="https://i.imgur.com/E7ygAWE.png" alt="Host">
-                <h3>Rott (Manager)</h3>
-            </div>
-            <div class="team-member">
-                <img src="https://i.imgur.com/5HlcFzq.png" alt="Login">
-                <h3>Login (Manager)</h3>
-            </div>
-            <div class="team-member">
-                <img src="https://i.imgur.com/n8ODdJZ.png" alt="Shell">
-                <h3>Shell (Director)</h3>
-            </div>
+        
+        <div class="system-status">
+            <span class="status-dot"></span>
+            <span class="status-text">System Operational</span>
         </div>
 
         
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="pricing.html" class="btn">Voir nos Tarifs</a>
-        </div>
+        <main>
+            <section class="hero">
+                <h1>Elevate Investigations <span>with CrowSint</span></h1>
+                <p class="subtitle">The ultimate OSINT platform for advanced investigations. From data leaks to blockchain traceback, we’ve got you covered.</p>
+                <div class="search-bar-container">
+                    <input type="text" class="search-bar" placeholder="Enter wallet address, email, username, or name">
+                    <button class="search-button" onclick="window.location.href='#pricing'">Search</button> 
+                </div>
+                <div class="cta-buttons">
+                    <button class="start-now" onclick="window.location.href='#pricing'">START NOW</button> 
+                    <button class="learn-more" onclick="window.location.href='#about-us'">Learn More</button> 
+                </div>
+            </section>
+
+            
+            <section id="about-us" class="about-us"> 
+                <h2>About Us</h2>
+                <p>CrowSint is a cutting-edge OSINT platform designed to empower investigators, cybersecurity experts, and businesses with advanced tools for data analysis and intelligence gathering. Our mission is to make OSINT accessible, efficient, and secure for everyone.</p>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features">
+                <h2>What We Offer</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-database"></i>
+                        <h3>IntelX & IntelVault</h3>
+                        <p>Access billions of records with our integrated IntelX and IntelVault databases.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-user-secret"></i>
+                        <h3>Identity Portal</h3>
+                        <p>Track and verify identities across multiple platforms with ease.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Data Leaks Search</h3>
+                        <p>Search through millions of leaked records to secure your data.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-robot"></i>
+                        <h3>StealerLogs Search</h3>
+                        <p>Find compromised credentials and take action before it’s too late.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-key"></i>
+                        <h3>OSINTCat API</h3>
+                        <p>Integrate our API for seamless OSINT data retrieval.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-search"></i>
+                        <h3>Snusbase & Breachbase</h3>
+                        <p>Search through Snusbase and Breachbase for comprehensive results.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-link"></i>
+                        <h3>TLO Blockchain Traceback</h3>
+                        <p>Trace blockchain transactions with precision and accuracy.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Skype ↔ Email</h3>
+                        <p>Convert Skype IDs to emails and vice versa effortlessly.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-cat"></i>
+                        <h3>GitSint Lookups</h3>
+                        <p>Search GitHub repositories for OSINT insights.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-eye"></i>
+                        <h3>OSINT Industry Searches</h3>
+                        <p>Access industry-specific OSINT data for targeted insights.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI Intelligence Lookups</h3>
+                        <p>Leverage AI-powered intelligence for advanced searches.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>Global ID Searches</h3>
+                        <p>Search international IDs and public records globally.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-phone"></i>
+                        <h3>International Phone Searches</h3>
+                        <p>Search international Phone Numbers Accross 170+ Countrys</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-house"></i>
+                        <h3>Property Searches</h3>
+                        <p>Comprehensive international data with owner information</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-car"></i>
+                        <h3>VIN/VRN Search</h3>
+                        <p>Find information about vehicals with our Vehicle record lookup system.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Discord Search Module</h3>
+                        <p>Find information about Discord Accounts using already leaked databases and scrapes online.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-cube"></i>
+                        <h3>Games Search Module</h3>
+                        <p>Find information about Minecraft, Steam, Epic Games and Roblox Accounts with our premium databases.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section -->
+            <section id="pricing" class="pricing"> 
+                <h2>Pricing Plans</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Lifetime</h3>
+                        <p class="price">$85<span>/lifetime</span></p>
+                        <ul>
+                         <ul>
+                            <li>Full API Access</li>
+                            <li>Dedicated Account Manager</li>
+                         </ul>
+                        </ul>
+                        <button class="buy-now">Buy Now</button>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Monthly</h3>
+                        <p class="price">$18<span>/month</span></p>
+                        <button class="buy-now">Buy Now</button>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Day</h3>
+                        <p class="price">5$<span>/day</span></p>
+                        <button class="buy-now">Buy Now</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="statistics">
+                <h2>Our Impact</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>40+</h3>
+                        <p>OSINT Tools</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-search"></i>
+                        <h3>14 872 </h3>
+                        <p>API Files</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-database"></i>
+                        <h3>1782 GB</h3>
+                        <p>Data Storage</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>2.75s</h3>
+                        <p>Average Response Time</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-card">
+                        <h3>What is CrowSint?</h3>
+                        <p>CrowSint is an advanced OSINT platform designed to help you uncover insights from publicly available data.</p>
+                    </div>
+                    <div class="faq-card">
+                        <h3>How secure is my data?</h3>
+                        <p>Your data is encrypted and stored securely. We prioritize your privacy and security.</p>
+                    </div>
+                    <div class="faq-card">
+                        <h3>Can I integrate CrowSint with my tools?</h3>
+                        <p>Yes, CrowSint offers a powerful API for seamless integration with your existing tools.</p>
+                    </div>
+                    <div class="faq-card">
+                        <h3>What industries use CrowSint?</h3>
+                        <p>CrowSint is used by cybersecurity experts, law enforcement, and businesses of all sizes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Report Bugs Section -->
+            <section id="report-bugs" class="report-bugs"> 
+                <h2>Report Bugs</h2>
+                <p>Found a bug? Let us know! Our team is dedicated to improving your experience. Please describe the issue below, and we’ll get back to you as soon as possible.</p>
+                <form class="bug-report-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Describe the bug" required></textarea>
+                    <button type="submit">Submit Report</button>
+                </form>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact">
+                <h2>Contact Us</h2>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CrowSint</h3>
+                    <p>Your gateway to advanced OSINT solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about-us">About Us</a></li> <
+                        <li><a href="#pricing">Pricing</a></li> 
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#report-bugs">Report Bugs</a></li> 
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CrowSint. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
-    
-    <footer>
-        <p>&copy; 2023 Crowsint. Tous droits réservés.</p>
-        <p>
-            <a href="privacy.html">Politique de Confidentialité</a> | 
-            <a href="terms.html">Conditions d'Utilisation</a> | 
-            <a href="contact.html">Contact</a>
-        </p>
-    </footer>
-
-    <script>
-        
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-
-       
-        window.addEventListener('load', () => {
-            const loading = document.getElementById('loading');
-            loading.style.display = 'none';
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
